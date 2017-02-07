@@ -1,0 +1,35 @@
+﻿@model VideoLibrary.Models.SearchCriteria
+
+@{
+    ViewBag.Title = "Home Page";
+    var directors = (SelectList)ViewBag.Director;
+}
+
+<div class="jumbotron">
+    <p align="center">
+        <img src="@Url.Content("~/Content/movie_theatre.png")" alt="Image" style="width: 800px; height: 300px;" />
+    </p>
+</div>
+
+<h2>Movie Search</h2>
+@using (Html.BeginForm("VideoList", "Videos"))
+{
+    <div class="form-group">
+        @Html.Label("Title")
+        @Html.TextBoxFor(x => x.SearchTitle, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.Label("Year")
+        @Html.TextBoxFor(x => x.SearchYear, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.Label("Director")
+        @Html.DropDownListFor(x => x.SearchDirector, directors, "All", new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+}
+
+
+
+
+

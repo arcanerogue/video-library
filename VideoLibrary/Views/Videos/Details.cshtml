@@ -1,0 +1,84 @@
+﻿@model VideoLibrary.ViewModels.VideoDetailsViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@Model.Title</h1>
+
+<div id="content">
+    <div class="col" style="float:right">
+        @if (@Model.PosterUrl != "")
+        {
+            <img src="@Url.Content(Model.PosterUrl)" alt="Image" style="float:right; margin-right:100px;width:200px;height:300px;" />
+        }
+    </div>
+    <div class="col" style="float:left;width:600px; margin-left:-89px;">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Year)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Year)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Director)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Director)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Plot)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Plot)
+            </dd>
+        </dl>
+    </div>    
+</div>
+
+
+<div style="clear:both">
+    <h2>Reviews</h2>
+    <table class="table">
+
+        @if (!Object.ReferenceEquals(null, Model.Reviews))
+        {
+            foreach (var review in Model.Reviews)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => review.User.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => review.Review1)
+                    </td>
+                </tr>
+
+            }
+        }
+        else
+        {
+            <h>There are no reviews.</h>
+        }
+    </table>
+
+</div>
+<p>
+    <!--//Html.ActionLink("Back to List", "Index", "Videos")-->
+    <!--//Html.RouteLink("Back to List", "VideoSearch", new { title = "Taxi", year = 0, director = "" })-->
+</p>
