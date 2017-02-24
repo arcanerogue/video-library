@@ -17,6 +17,7 @@ namespace VideoLibrary.Controllers
             _db= new VideoDbSet();
         }
     
+        // GET: VideoList
         [AllowAnonymous]
         public ActionResult VideoList(SearchCriteria searchValues)
         {
@@ -40,7 +41,8 @@ namespace VideoLibrary.Controllers
             return View(movies.OrderBy(t => t.Title));
         }
 
-        [Authorize]
+        // GET: VideoList/Details/id
+        //[Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -63,6 +65,37 @@ namespace VideoLibrary.Controllers
                 return HttpNotFound();
             }
             return View(videoDetails);
+        }
+
+        //[Authorize]
+        public ActionResult Create()
+        {
+
+            return View();
+        }
+
+        //[Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(VideoDetailsViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var video = new Video
+            {
+                Title = model.Title,
+                Year = model.Year,
+                Director = model.Director,
+                FormatCode = model.FormatCode.ToString()                    
+            };
+
+            _db.Videos.Add(video);
+            _db.SaveChanges();            
+
+            return RedirectToAction("VideoList", "Videos");            
         }
 
         protected override void Dispose(bool disposing)

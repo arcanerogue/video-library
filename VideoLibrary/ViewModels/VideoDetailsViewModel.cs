@@ -3,41 +3,51 @@ using System.Collections.Generic;
 using System.Web;
 using System.Xml;
 using VideoLibrary.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace VideoLibrary.ViewModels
 {
     public class VideoDetailsViewModel
     {
         public int VideoId { get; set; }
+
+        [Required]
         public string Title { get; set; }
+
+        [Required]
         public int Year { get; set; }
+
+        [Required]
         public string Director { get; set; }
+
+        [Required]
+        public VideoFormat FormatCode { get; set; }
         
         private string _Plot;
-        public string Plot
-        {
-            get
-            {
-                if (_Plot == null && !String.IsNullOrWhiteSpace(this.Title))
-                {
-                    LoadExtendedInfo();
-                }
-                return _Plot;
-            }
-        }
+        //public string Plot
+        //{
+        //    get
+        //    {
+        //        if (_Plot == null && !String.IsNullOrWhiteSpace(this.Title))
+        //        {
+        //            LoadExtendedInfo();
+        //        }
+        //        return _Plot;
+        //    }
+        //}
 
         private string _PosterUrl;
-        public string PosterUrl
-        {
-            get
-            {
-                if (_PosterUrl == null && !String.IsNullOrWhiteSpace(this.Title))
-                {
-                    LoadExtendedInfo();
-                }
-                return _PosterUrl;
-            }
-        }
+        //public string PosterUrl
+        //{
+        //    get
+        //    {
+        //        if (_PosterUrl == null && !String.IsNullOrWhiteSpace(this.Title))
+        //        {
+        //            LoadExtendedInfo();
+        //        }
+        //        return _PosterUrl;
+        //    }
+        //}
 
         public ICollection<Review> Reviews { get; set; }
 

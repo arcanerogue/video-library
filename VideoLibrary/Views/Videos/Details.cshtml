@@ -8,12 +8,12 @@
 <h1>@Model.Title</h1>
 
 <div id="content">
-    <div class="col" style="float:right">
+    @*<div class="col" style="float:right">
         @if (@Model.PosterUrl != "")
         {
             <img src="@Url.Content(Model.PosterUrl)" alt="Image" style="float:right; margin-right:100px;width:200px;height:300px;" />
         }
-    </div>
+    </div>*@
     <div class="col" style="float:left;width:600px; margin-left:-89px;">
         <dl class="dl-horizontal">
             <dt>
@@ -40,13 +40,13 @@
                 @Html.DisplayFor(model => model.Director)
             </dd>
 
-            <dt>
+            @*<dt>
                 @Html.DisplayNameFor(model => model.Plot)
             </dt>
 
             <dd>
                 @Html.DisplayFor(model => model.Plot)
-            </dd>
+            </dd>*@
         </dl>
     </div>    
 </div>

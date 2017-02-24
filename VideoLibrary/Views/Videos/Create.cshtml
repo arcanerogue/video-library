@@ -1,0 +1,40 @@
+﻿@model VideoLibrary.ViewModels.VideoDetailsViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+@using (Html.BeginForm("Create", "Videos"))
+{
+    <p class="alert alert-info">All fields are <strong>required</strong>.</p>
+    @Html.AntiForgeryToken()
+    /*@Html.HiddenFor(v => v.VideoId)*/
+    <div class="form-group">
+        @Html.LabelFor(v => v.Title)
+        @Html.TextBoxFor(v => v.Title, new { @class = "form-control", autofocus = "autofocus" })
+        @Html.ValidationMessageFor(v => v.Title)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(v => v.Year)
+        @Html.TextBoxFor(v => v.Year, new { @class = "form-control", placeholder = "ex. 2017" })
+        @Html.ValidationMessageFor(v => v.Year)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(v => v.Director)
+        @Html.TextBoxFor(v => v.Director, new { @class = "form-control", placeholder = "First Last" })
+        @Html.ValidationMessageFor(v => v.Director)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(v => v.FormatCode, "Format Code")
+        @Html.EnumDropDownListFor(v => v.FormatCode, "", new { @class = "form-control"})
+        @Html.ValidationMessageFor(v => v.FormatCode)
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg">Save</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
