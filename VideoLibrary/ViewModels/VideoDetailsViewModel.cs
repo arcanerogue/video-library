@@ -22,8 +22,10 @@ namespace VideoLibrary.ViewModels
 
         [Required]
         public VideoFormat FormatCode { get; set; }
-        
-        private string _Plot;
+
+        public string PlotSummary { get; set; }
+
+        //private string _Plot;
         //public string Plot
         //{
         //    get
@@ -70,7 +72,7 @@ namespace VideoLibrary.ViewModels
                             string xmlPlot = (reader.GetAttribute("plot"));
                             
                             // Decode escaped chars
-                            this._Plot = HttpUtility.HtmlDecode(xmlPlot);
+                            //this._Plot = HttpUtility.HtmlDecode(xmlPlot);
 
                         }
                     }

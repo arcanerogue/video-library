@@ -57,7 +57,8 @@ namespace VideoLibrary.Controllers
                 Title = video.Title,
                 Year = video.Year,
                 Director = video.Director,
-                Reviews = video.Reviews
+                Reviews = video.Reviews,
+                PlotSummary = video.PlotSummary
             };
             
             if (videoDetails == null)

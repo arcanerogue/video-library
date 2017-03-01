@@ -36,6 +36,9 @@ namespace VideoLibrary.Models
 
         public bool IsDeleted { get; set; }
 
+        [StringLength(510)]
+        public string PlotSummary { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Checkout> Checkouts { get; set; }
 
