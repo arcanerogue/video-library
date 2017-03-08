@@ -8,12 +8,6 @@
 <h1>@Model.Title</h1>
 
 <div id="content">
-    @*<div class="col" style="float:right"> 
-        @if (@Model.PosterUrl != "")
-        {
-            <img src="@Url.Content(Model.PosterUrl)" alt="Image" style="float:right; margin-right:100px;width:200px;height:300px;" />
-        }
-    </div>*@
     <div class="col" style="float:left;width:600px; margin-left:-89px;">
         <dl class="dl-horizontal">
             <dt>
@@ -41,7 +35,6 @@
             </dd>
 
             <dt>
-                @*@Html.DisplayNameFor(model => model.PlotSummary)*@
                 @Html.Label("Plot Summary")
             </dt>
 
@@ -80,6 +73,10 @@
 
 </div>
 <p>
-    <!--//Html.ActionLink("Back to List", "Index", "Videos")-->
-    <!--//Html.RouteLink("Back to List", "VideoSearch", new { title = "Taxi", year = 0, director = "" })-->
+    <div>
+        @Html.ActionLink("Edit this video", "Edit", new { id = Model.VideoId })
+    </div>
+    <div>
+        @Html.ActionLink("Back to list", "VideoList")
+    </div>    
 </p>

@@ -1,15 +1,16 @@
 ﻿@model VideoLibrary.ViewModels.VideoDetailsViewModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Create</h2>
-@using (Html.BeginForm("Create", "Videos"))
+@using (Html.BeginForm("Update", "Videos"))
 {
     <p class="alert alert-info">All fields are <strong>required</strong>.</p>
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(v => v.VideoId)
     <div class="form-group">
         @Html.LabelFor(v => v.Title)
         @Html.TextBoxFor(v => v.Title, new { @class = "form-control", autofocus = "autofocus" })
@@ -27,8 +28,13 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(v => v.FormatCode, "Format Code")
-        @Html.EnumDropDownListFor(v => v.FormatCode, "", new { @class = "form-control"})
+        @Html.EnumDropDownListFor(v => v.FormatCode, "", new { @class = "form-control" })
         @Html.ValidationMessageFor(v => v.FormatCode)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(v => v.PlotSummary, "Plot Summary")
+        @Html.TextBoxFor(v => v.PlotSummary, new { @class = "form-control", placeholder = "A brief summary." })
+        @Html.ValidationMessageFor(v => v.PlotSummary)
     </div>
     <button type="submit" class="btn btn-primary btn-lg">Save</button>
 }

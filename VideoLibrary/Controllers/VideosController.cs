@@ -99,6 +99,47 @@ namespace VideoLibrary.Controllers
             return RedirectToAction("VideoList", "Videos");            
         }
 
+        //[Authorize]
+        public ActionResult Edit(int id)
+        {
+            Video video = _db.Videos.Find(id);
+
+            var viewModel = new VideoDetailsViewModel
+            {
+                VideoId = video.VideoId,
+                Title = video.Title,
+                Year = video.Year,
+                Director = video.Director,
+                Reviews = video.Reviews,
+                FormatCode = (VideoFormat)Enum.Parse(typeof(VideoFormat), video.FormatCode),
+                PlotSummary = video.PlotSummary
+            };
+
+            return View(viewModel);
+        }
+
+        //[Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Update(VideoDetailsViewModel viewModel)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View("Index");
+            }
+
+            var video = _db.Videos.Single(v => v.VideoId == viewModel.VideoId);
+            video.Title = viewModel.Title;
+            video.Year = viewModel.Year;
+            video.Director = viewModel.Director;
+            video.FormatCode = viewModel.FormatCode.ToString();
+            video.PlotSummary = viewModel.PlotSummary;
+
+            _db.SaveChanges();
+
+            return RedirectToAction("VideoList");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
